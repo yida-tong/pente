@@ -51,7 +51,7 @@ struct inputFile {
 
 int min_value(node*, int, int, int);
 inputFile inputInfo {};
-int meRadius = 2;
+int meRadius = 1;
 int opRadius = 1;
 bool secWhite=false;
 
@@ -740,20 +740,14 @@ int main() {
         }
 
         if (inputInfo.time<20) {
-            meRadius = 2;
             res = alphaBetaSearch(2);
         } else {
-            if (inputInfo.turnNum<=3) {
-                meRadius = 2;
-                res = alphaBetaSearch(2);
+            if (inputInfo.turnNum<=8) {
+                res = alphaBetaSearch(4);
+            } else if (inputInfo.turnNum<=15) {
+                res = alphaBetaSearch(3);
             } else {
-                if (inputInfo.time>300) {
-                    meRadius = 1;
-                    res = alphaBetaSearch(4);
-                } else {
-                    meRadius = 2;
-                    res = alphaBetaSearch(3);
-                }
+                res = alphaBetaSearch(2);
             }
         }
     }
